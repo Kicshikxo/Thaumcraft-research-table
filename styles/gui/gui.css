@@ -1,0 +1,201 @@
+@font-face {
+    font-family: Minecraft;
+    src: url('../../fonts/Minecraft.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: Minecraft;
+}
+
+#preloader {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #161616;
+    transition: .7s opacity;
+    z-index: 1000;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    pointer-events: none
+}
+
+body {
+    background: #161616;
+    padding-top: 29px;
+    overflow: hidden;
+}
+
+.control-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 29px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.drag-area {
+    width: calc(100% - 45px * 2);
+    -webkit-app-region: drag;
+}
+
+.control-button {
+    width: 45px;
+    height: 29px;
+}
+
+#minimize-button {
+    background: url('../../images/gui/minimize-button.png');
+    opacity: 0;
+    animation: appear .7s 1 forwards;
+}
+
+#minimize-button:hover {
+    background: url('../../images/gui/minimize-button-hover.png')
+}
+
+#close-button {
+    background: url('../../images/gui/close-button.png');
+    animation: appear .7s 1 forwards;
+}
+
+#close-button:hover {
+    background: url('../../images/gui/close-button-hover.png')
+}
+
+@keyframes appear {
+    0%   {opacity: 0}
+    100% {opacity: 1}
+}
+
+#main-block {
+    width: 768px;
+    height: 501px;
+    overflow: hidden;
+    display: none;
+}
+
+#background {
+    width: 768px;
+    height: 501px;
+    background: url('../../images/gui/background.png');
+}
+
+#thaumonomicon-block {
+    position: absolute;
+	top: calc(30px + 29px);
+	left: 42px;
+    width: 48px;
+    height: 48px;
+    background: url('../../images/gui/thaumonomicon.png');
+    background-size: cover;
+}
+
+#complete-star {
+    position: absolute;
+	top: calc(30px + 29px - 4px);
+	left: calc(128px - 6px);
+    width: 56px;
+    height: 56px;
+    background: url('../../images/gui/star.png');
+    background-size: cover;
+    opacity: 0;
+    transition: .2s opacity;
+} 
+
+#main-block.research-completed #complete-star {
+    opacity: 1
+}
+
+#research-note {
+    position: absolute;
+	top: calc(30px + 29px);
+	left: 210px;
+    width: 48px;
+    height: 48px;
+    background: url('../../images/gui/researchnotes.png');
+}
+
+#main-block.research-completed #research-note{
+    background: url('../../images/gui/discovery.png');
+}
+
+.hex:before,
+.aspect:before,
+.with-aspect:before,
+.always-active:before,
+.aspect-to-combine:before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-size: cover !important;
+}
+
+#aspects-combine-button {
+    position: absolute;
+    width: calc(32px * 3);
+    height: calc(16px * 3);
+    left: 105px;
+    top: calc(417px + 29px);
+    background: url('../../images/gui/combine-button.png');
+    justify-content: center;
+    align-items: center;
+    /*opacity: 1;*/
+    transition: .2s opacity;
+}
+
+#aspects-combine-button:active {
+	background: url(../../images/gui/combine-button-active.png);
+}
+
+#aspects-combine-button.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.aspect-to-combine {
+	position: absolute;
+	width: 48px;
+	height: 48px;
+}
+
+#first-aspect-to-combine {
+	left: 39px;
+	top: calc(417px + 29px);
+}
+
+#second-aspect-to-combine {
+	left: 213px;
+	top: calc(417px + 29px);
+}
+
+#previous-page-button {
+    position: absolute;
+	top: calc(363px + 29px);
+	left: 81px;
+    width: 72px;
+    height: 24px;
+    background: url('../../images/gui/previous-page.png');
+}
+
+#next-page-button {
+    position: absolute;
+	top: calc(363px + 29px);
+	left: 153px;
+    width: 72px;
+    height: 24px;
+    background: url('../../images/gui/next-page.png');
+}

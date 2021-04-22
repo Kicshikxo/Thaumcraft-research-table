@@ -1,0 +1,93 @@
+#researches-menu {
+    position: absolute;
+    left: 0;
+    top: 29;
+    width: 768px;
+    height: 501px;
+    z-index: 200;
+    background-image: url('../../images/gui/bg-texture.png');
+    background-repeat: repeat;
+    background-position: 0 4px;
+	background-attachment: local;
+    padding: 9px;
+    overflow-y: auto;
+	color: white;
+    text-shadow: 0.125em 0.125em 0 #444;
+}
+
+#researches-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.category {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.category-title {
+    width: 100%;
+    height: 99px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    position: relative;
+}
+
+.category:first-child .category-title {
+    height: 92px;
+}
+
+.category-title:before {
+    position: absolute;
+    content: '';
+    left: 42px;
+    width: 64px;
+    height: 64px;
+}
+
+.category-item {
+    width: calc(150px - 2px * 2);
+    height: calc(99px - 2px * 2);
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition: .8s background;
+}
+
+.category-item:hover {
+    transition: .1s background;
+    background: #8888;
+}
+
+.category-item-icon {
+    width: 48px;
+    height: 48px;
+    background: url('../../images/gui/researchnotes.png');
+    position: relative;
+}
+
+.category-item.completed .category-item-icon:after {
+    position: absolute;
+    content: '';
+    width: 16px;
+    height: 16px;
+    bottom: -4px;
+    right: -4px;
+    background: url(../../images/gui/checkmark.png);
+}
+
+.category-item-title {
+    width: 90%;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 4px;
+    word-wrap: break-word;
+}
+ 

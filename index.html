@@ -1,0 +1,163 @@
+<html>
+	<head>
+		<meta name = 'viewport' content = 'width = device-width, initial-scale = 1, maximum-scale = 1, minimum-scale = 1, user-scalable = no, minimal-ui'>
+		<meta charset="UTF-8">
+		<meta name = 'full-screen' content = 'yes'>
+
+		<title>Thaumcraft Research Table</title>
+
+		<script src = 'jquery/jquery.js'></script>
+		<script src = 'jquery/jquery-ui.min.js'></script>
+		<script src = 'jquery/jquery.ui.touch-punch.min.js'></script>
+
+		<script src = 'renderer.js'></script>
+		<script src = 'js/aspects.js'></script>
+		<script src = 'js/researches.js'></script>
+		<script src = 'js/localStorage.js'></script>
+
+		<script src = 'js/main.js' defer></script>
+		<script src = 'js/hint.js' defer></script>
+		<script src = 'js/sounds.js' defer></script>
+		<script src = 'js/aspectsCombination.js' defer></script>
+
+		<link rel = 'preload' href = 'fonts/Minecraft.ttf'                  as = 'font'>
+		<link rel = 'preload' href = 'images/gui/close-button.png'          as = 'image'>
+		<link rel = 'preload' href = 'images/gui/close-button-hover.png'    as = 'image'>
+		<link rel = 'preload' href = 'images/gui/minimize-button.png'       as = 'image'>
+		<link rel = 'preload' href = 'images/gui/minimize-button-hover.png' as = 'image'>
+
+		<link rel = 'stylesheet' href = 'main.css'>
+		<link rel = 'preload' href = 'main.css' as = 'style'>
+	</head>
+
+	<body>
+		<div class = 'control-panel'>
+			<div class = 'drag-area'></div>
+			<button class = 'control-button' id = 'minimize-button' onclick = 'window.control.minimize()'></button>
+			<button class = 'control-button' id = 'close-button'    onclick = 'window.control.close()'></button>
+		</div>
+
+		<div id = 'preloader'></div>
+
+		<div id = 'hint'>
+			<div id = 'hint-title'></div>
+			<div id = 'hint-description'></div>
+			<div id = 'hint-aspects'>
+				<div class = 'description-aspect' id = 'first-description-aspect'></div>
+				<div class = 'description-aspect' id = 'second-description-aspect'></div>
+			</div>
+		</div>
+
+		<div id = 'researches-menu'></div>
+		
+		<div id = 'main-block'>
+
+			<div id = 'thaumonomicon-block' data-title = 'Открыть меню исследований' onclick = 'toggleResearchesMenu()'></div>
+			<div id = 'complete-star'></div>
+			<div id = 'research-note' data-research-category = '' data-research-name = ''></div>
+
+			<div id = 'previous-page-button' onclick = 'previousPage()'></div>
+			<div id = 'next-page-button'     onclick = 'nextPage()'></div>
+
+			<div class = 'aspect-to-combine' id = 'first-aspect-to-combine'  onclick = 'cleanAspectForCombine(1)'></div>
+
+			<div id = 'aspects-combine-button' class = 'hidden' onclick = 'playClickSound();combineAspects()'></div>
+
+			<div class = 'aspect-to-combine' id = 'second-aspect-to-combine' onclick = 'cleanAspectForCombine(2)'></div>
+		
+			<div id = 'aspects-block'>
+				<div class = 'aspect aer'          data-title = 'Aer'          data-description = 'Воздух'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect alienis'      data-title = 'Alienis'      data-description = 'Чужой, Жуткий, Сверхъестественный'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect aqua'         data-title = 'Aqua'         data-description = 'Вода'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect arbor'        data-title = 'Arbor'        data-description = 'Древесина, Дерево'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect auram'        data-title = 'Auram'        data-description = 'Аура'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect bestia'       data-title = 'Bestia'       data-description = 'Животное, Зверь'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect cognitio'     data-title = 'Cognitio'     data-description = 'Мышление, Память, Познание'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect corpus'       data-title = 'Corpus'       data-description = 'Плоть'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect exanimis'     data-title = 'Exanimis'     data-description = 'Нежить'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect fabrico'      data-title = 'Fabrico'      data-description = 'Создание, Ремесло'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect fames'        data-title = 'Fames'        data-description = 'Голод, Вожделение'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect gelum'        data-title = 'Gelum'        data-description = 'Лёд, Мороз, Холод'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect herba'        data-title = 'Herba'        data-description = 'Зарождение, Семя'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect humanus'      data-title = 'Humanus'      data-description = 'Человек'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect ignis'        data-title = 'Ignis'        data-description = 'Огонь'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect instrumentum' data-title = 'Instrumentum' data-description = 'Инструмент, Прибор'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect iter'         data-title = 'Iter'         data-description = 'Путешествие, Странствие, Поход'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect limus'        data-title = 'Limus'        data-description = 'Слизь, Вязкость'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect lucrum'       data-title = 'Lucrum'       data-description = 'Жадность, Алчность'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect lux'          data-title = 'Lux'          data-description = 'Свет, Яркость, День'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect machina'      data-title = 'Machina'      data-description = 'Механизм, Машина, Устройство'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect messis'       data-title = 'Messis'       data-description = 'Урожай'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect metallum'     data-title = 'Metallum'     data-description = 'Металл, Прочность, Руда'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect meto'         data-title = 'Meto'         data-description = 'Жатва, Сбор'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect mortuus'      data-title = 'Mortuus'      data-description = 'Смерть, Распад, Нежить'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect motus'        data-title = 'Motus'        data-description = 'Движение, Оживление'><div class = 'aspect-quantity'>100</div></div>
+			    <div class = 'aspect ordo'         data-title = 'Ordo'         data-description = 'Порядок, Организованность, Чистота'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect pannus'       data-title = 'Pannus'       data-description = 'Ткань, Материал, Покрытие'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect perditio'     data-title = 'Perditio'     data-description = 'Энтропия, Хаос, Разрушение'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect perfodio'     data-title = 'Perfodio'     data-description = 'Добыча'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect permutatio'   data-title = 'Permutatio'   data-description = 'Круговорот, Обмен, Бартер'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect potentia'     data-title = 'Potentia'     data-description = 'Сила, Энергия, Мощь'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect praecantatio' data-title = 'Praecantatio' data-description = 'Магия, Чары, Колдовство'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect sano'         data-title = 'Sano'         data-description = 'Лечение, Починка, Восстановление'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect sensus'       data-title = 'Sensus'       data-description = 'Чувство, Осязание'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect spiritus'     data-title = 'Spiritus'     data-description = 'Душа'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect telum'        data-title = 'Telum'        data-description = 'Оружие, Нападение, Вред'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect tempestas'    data-title = 'Tempestas'    data-description = 'Погода, Климат'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect tenebrae'     data-title = 'Tenebrae'     data-description = 'Тьма, Ночь, Слепота'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect terra'        data-title = 'Terra'        data-description = 'Земля'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect tutamen'      data-title = 'Tutamen'      data-description = 'Броня, Защита'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect vacuos'       data-title = 'Vacuos'       data-description = 'Пустота, Неизвестность, Скрытность'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect venenum'      data-title = 'Venenum'      data-description = 'Яд, Наркотик, Грязь'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect victus'       data-title = 'Victus'       data-description = 'Жизнь, Еда, Питание'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect vinculum'     data-title = 'Vinculum'     data-description = 'Ловушка, Тюрьма'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect vitium'       data-title = 'Vitium'       data-description = 'Инфекция'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect vitreus'      data-title = 'Vitreus'      data-description = 'Стекло, Кристалл, Прозрачность'><div class = 'aspect-quantity'>100</div></div>
+				<div class = 'aspect volatus'      data-title = 'Volatus'      data-description = 'Полёт'><div class = 'aspect-quantity'>100</div></div>
+			</div>
+			
+			<div id = 'research-block'>
+				<div id = 'hexagons-grid'>
+					<script>
+						let gridLayout = ''
+						for (y = 0; y < 9; y++){
+							gridLayout += '<div class = "row">'
+							for (x = 0; x < 9; x++){
+								gridLayout += `
+								<div class="cell" data-x="${x}" data-y="${y}">
+							 		<div class="aspects-block"></div>
+									<div class="aspect-drop"></div>
+									<div class="connect-line connect-line-0"></div>
+									<div class="connect-line connect-line-1"></div>
+									<div class="connect-line connect-line-2"></div>
+									<div class="connect-line connect-line-3"></div>
+									<div class="connect-line connect-line-4"></div>
+									<div class="connect-line connect-line-5"></div>
+						 		</div>`
+							}
+							gridLayout += '</div>'
+						}
+						document.getElementById('hexagons-grid').innerHTML = gridLayout
+					</script>
+				</div>
+			</div>
+		
+			<div id = 'background'></div>
+		</div>
+
+		<audio src = 'sounds/hhoff.ogg'  preload = 'auto' id = 'hhoff-sound'></audio>
+		<audio src = 'sounds/hhon.ogg'   preload = 'auto' id = 'hhon-sound'></audio>
+		<audio src = 'sounds/orb.ogg'    preload = 'auto' id = 'orb-sound'></audio>
+		<audio src = 'sounds/erase.ogg'  preload = 'auto' id = 'erase-sound'></audio>
+		<audio src = 'sounds/write1.ogg' preload = 'auto' id = 'write1-sound'></audio>
+		<audio src = 'sounds/write2.ogg' preload = 'auto' id = 'write2-sound'></audio>
+		<audio src = 'sounds/learn.ogg'  preload = 'auto' id = 'learn-sound'></audio>
+		<audio src = 'sounds/page1.ogg'  preload = 'auto' id = 'open-sound'></audio>
+		<audio src = 'sounds/page2.ogg'  preload = 'auto' id = 'close-sound'></audio>
+		<audio src = 'sounds/key.ogg'    preload = 'auto' id = 'change-page-sound'></audio>
+		<audio src = 'sounds/cameraclack1.ogg' preload = 'auto' id = 'click-1-sound'></audio>
+		<audio src = 'sounds/cameraclack2.ogg' preload = 'auto' id = 'click-2-sound'></audio>
+		<audio src = 'sounds/cameraclack3.ogg' preload = 'auto' id = 'click-3-sound'></audio>
+		<audio src = 'sounds/craftstart.ogg'   preload = 'auto' id = 'started-sound'></audio>
+	</body>
+</html>

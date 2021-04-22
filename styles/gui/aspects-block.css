@@ -1,0 +1,63 @@
+ #aspects-block {
+    position: absolute;
+	top: calc(41px * 3 + 29px);
+    left: calc(11px * 3);
+    width: calc(79px * 3 - 2px);
+    height: calc(79px * 3);
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex-direction: column;
+}
+
+.aspect {
+    width: 47px;
+    height: 47px;
+    display: none;
+    justify-content: flex-end;
+    align-items: flex-end;
+    transition: .5s filter, .5s opacity;
+    z-index: 100;
+    position: relative;
+}
+
+.aspect.opened {
+	display: flex;
+}
+
+.aspect.not-enough,
+.aspect-to-combine.not-enough {
+	opacity: .5;
+}
+
+.aspect:before,
+.always-active:before,
+.description-aspect:before {
+    z-index: 140;
+}
+
+.aspect .aspect-quantity {
+    color: #FFF;
+    font-size: 12px;
+    text-shadow: -0   -1px 0 #000000, 
+    			  0   -1px 0 #000000, 
+    			 -0    1px 0 #000000, 
+    			  0    1px 0 #000000, 
+    			 -1px  0   0 #000000, 
+    			  1px  0   0 #000000, 
+    			 -1px  0   0 #000000, 
+    			  1px  0   0 #000000, 
+    			 -1px -1px 0 #000000, 
+    			  1px -1px 0 #000000, 
+    			 -1px  1px 0 #000000, 
+    			  1px  1px 0 #000000, 
+    			 -1px -1px 0 #000000, 
+    			  1px -1px 0 #000000, 
+    			  -1px 1px 0 #000000, 
+    			   1px 1px 0 #000000;
+    z-index: 140
+}
+
+.aspect.ui-draggable-dragging {
+    z-index: 200;
+}

@@ -1,0 +1,39 @@
+{
+	"name": "Thaumcraft-Research-Table",
+	"productName": "Thaumcraft Research Table",
+	"version": "1.0.15",
+	"description": "Стол изучения из мода Thaumcraft 4",
+	"main": "main.js",
+	"build": {
+		"nsis": {
+			"oneClick": false,
+			"perMachine": true,
+			"allowElevation": true,
+			"allowToChangeInstallationDirectory": true,
+			"deleteAppDataOnUninstall": true,
+			"createDesktopShortcut": true,
+			"installerIcon": "icons/icon.ico",
+			"uninstallerIcon": "icons/icon.ico",
+			"uninstallDisplayName": "Uninstall Thaumcraft Research Table"
+		},
+		"linux": {
+			"category": "Game",
+			"description": "Стол изучения из мода Thaumcraft 4",
+			"icon": "icons"
+		},
+		"win": {
+			"icon": "icons/icon.ico"
+		},
+		"mac": {
+			"icon": "icons/icon.icns"
+		}
+	},
+	"scripts": {
+		"start": "electron ."
+	},
+	"devDependencies": {
+		"electron": "^11.1.1",
+		"electron-icon-builder": "^2.0.1"
+	},
+	"dependencies": {}
+}

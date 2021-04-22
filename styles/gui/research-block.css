@@ -1,0 +1,155 @@
+#research-block {
+    position: absolute;
+	top: calc(10px * 3 + 29px);
+    left: calc(96px * 3);
+    width: calc(148px * 3);
+    height: calc(148px * 3);
+    background: url('../../images/gui/parchment.png');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hexagons-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(47px * 9);
+    height: calc(47px * 9);
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -1px 0px;
+}
+
+#hexagons-grid .cell {
+    width: 47px;
+    height: 47px;
+    position: relative;
+    margin: 0px -4px;
+}
+
+#hexagons-grid .hex:before {
+    background: url('../../images/gui/hex1.png');
+    z-index: 120;
+}
+
+#main-block.research-completed .hex:before {
+	transition: .3s opacity;
+    opacity: 0 !important;
+}
+
+
+#hexagons-grid .hex:not(.connect):hover:before,
+#hexagons-grid .hex.collided:before {
+    background: url('../../images/gui/hex2.png');
+    filter: brightness(150%);
+}
+
+#hexagons-grid .hex .aspects-block {
+    position: absolute;
+    z-index: 150;
+}
+
+#hexagons-grid .cell:nth-child(even),
+#hexagons-grid .script:nth-child(even) {
+    top: calc(38px / 2 + 4px);
+}
+
+.script-1  {background: url('../../images/scripts/script-1.png')}
+.script-2  {background: url('../../images/scripts/script-2.png')}
+.script-3  {background: url('../../images/scripts/script-3.png')}
+.script-4  {background: url('../../images/scripts/script-4.png')}
+.script-5  {background: url('../../images/scripts/script-5.png')}
+.script-6  {background: url('../../images/scripts/script-6.png')}
+.script-7  {background: url('../../images/scripts/script-7.png')}
+.script-8  {background: url('../../images/scripts/script-8.png')}
+.script-9  {background: url('../../images/scripts/script-9.png')}
+.script-10 {background: url('../../images/scripts/script-10.png')}
+.script-11 {background: url('../../images/scripts/script-11.png')}
+.script-12 {background: url('../../images/scripts/script-12.png')}
+.script-13 {background: url('../../images/scripts/script-13.png')}
+.script-14 {background: url('../../images/scripts/script-14.png')}
+.script-15 {background: url('../../images/scripts/script-15.png')}
+.script-16 {background: url('../../images/scripts/script-16.png')}
+
+.script {
+    background-size: cover;
+    opacity: .35;
+    transform: scale(.6);
+    filter: invert(100%);
+}
+
+.hex .aspect.remove {
+    animation: remove-aspect .3s 1 forwards;
+}
+
+.hex.inactive .aspect {
+    filter: brightness(0%);
+    opacity: .5;
+}
+
+@keyframes remove-aspect {
+    0% {}
+    100% {
+/*         transform: scale(.8); */
+        opacity: 0
+    }
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hex.with-aspect .aspect-drop {
+    display: none;
+}
+
+.hex .aspect-drop {
+    width: 32px;
+    height: 32px;
+}
+
+.connect-line {
+    position: absolute;
+    width: 2px;
+    height: 46px;
+    top: calc(-50% + 2px);
+    transform-origin: 50% 100%;
+    z-index: 130;
+    transition: .5s opacity;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: 50px;
+}
+
+@keyframes connects-blinking {
+    0%   {background: #F6FDEAAA}
+    50%  {background: #CBF9E1AA}
+    100% {background: #F6FDEAAA}
+}
+
+.hex.connect-0 .connect-line-0,
+.hex.connect-1 .connect-line-1,
+.hex.connect-2 .connect-line-2,
+.hex.connect-3 .connect-line-3,
+.hex.connect-4 .connect-line-4,
+.hex.connect-5 .connect-line-5 {
+    opacity: 1 !important;
+    animation: connects-blinking .7s infinite ease-in-out;
+}
+
+.connect-line-0 {transform: rotate(calc(60deg * 0))}
+.connect-line-1 {transform: rotate(calc(60deg * 1))}
+.connect-line-2 {transform: rotate(calc(60deg * 2))}
+.connect-line-3 {transform: rotate(calc(60deg * 3))}
+.connect-line-4 {transform: rotate(calc(60deg * 4))}
+.connect-line-5 {transform: rotate(calc(60deg * 5))} 

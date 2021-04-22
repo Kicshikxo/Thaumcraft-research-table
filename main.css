@@ -1,0 +1,10 @@
+@import url('styles/preload.css');
+@import url('styles/aspects.css');
+@import url('styles/categories.css');
+@import url('styles/researches.css');
+
+@import url('styles/gui/gui.css');
+@import url('styles/gui/hint.css');
+@import url('styles/gui/aspects-block.css');
+@import url('styles/gui/research-block.css');
+@import url('styles/gui/researches-menu.css');

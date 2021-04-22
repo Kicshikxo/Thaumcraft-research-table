@@ -1,0 +1,6 @@
+.category-title[data-category-title="basicInformation"]:before {background: url(../images/categories/r_thaumonomicon.png)}
+.category-title[data-category-title="thaumaturgy"]:before {background: url(../images/categories/r_thaumaturgy.png)}
+.category-title[data-category-title="alchemy"]:before {background: url(../images/categories/r_crucible.png)}
+.category-title[data-category-title="inventions"]:before {background: url(../images/categories/r_artifice.png)}
+.category-title[data-category-title="golemancy"]:before {background: url(../images/categories/r_golemancy.png)}
+.category-title[data-category-title="ancientKnowledge"]:before {background: url(../images/categories/r_eldritch.png)} 

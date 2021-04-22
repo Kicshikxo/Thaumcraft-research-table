@@ -1,0 +1,98 @@
+#hint {
+    position: fixed;
+    max-width: 400px;
+    background: #100010f0;
+    z-index: 250;
+    word-spacing: 4px;
+    display: none;
+}
+
+#hint:before {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: -0.125em;
+    bottom: 0.125em;
+    left: -0.125em;
+    border: 0.125em solid #100010;
+    border-style: none solid;
+    border-color: #100010f0;
+}
+
+#hint:after {
+    content: "";
+    position: absolute;
+    top: 0.125em;
+    right: 0;
+    bottom: 0.125em;
+    left: 0;
+    border: 0.125em solid #2D0A63;
+    border-image: linear-gradient(#5000ff4f, #28007f4f) 1;
+}
+
+#hint.aspect-hint #hint-title {
+    color: #71E2DF;
+    text-shadow: 0.125em 0.125em 0 #004844;
+}
+#hint.aspect-hint #hint-description {
+    color: #ACA3AA;
+    text-shadow: 0.125em 0.125em 0 #352E36;
+}
+
+#hint.research-hint #hint-title {
+    color: #FFAA00;
+    text-shadow: 0.125em 0.125em 0 #2A2A00;
+}
+#hint.research-hint #hint-description {
+    color: #ACA3AA;
+    text-shadow: 0.125em 0.125em 0 #352E36;
+    font-style: italic
+}
+
+#hint-title {
+	color: white;
+    /*color: #71E2DF;*/
+    font-size: 14px;
+    margin: 12px 6px;
+    text-shadow: 0.125em 0.125em 0 #444;
+    /*text-shadow: 0.125em 0.125em 0 #004844;*/
+    white-space: nowrap;
+}
+
+#hint-description {
+	color: white;
+    /*color: #ACA3AA;*/
+    margin: 10px 6px;
+    font-size: 14px;
+    text-shadow: 0.125em 0.125em 0 #444;
+    /*text-shadow: 0.125em 0.125em 0 #352E36;*/
+    position: relative;
+    white-space: nowrap;
+}
+
+.description-aspect {
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 47px;
+    height: 47px;
+}
+
+.description-aspect.with-aspect:after {
+    position: absolute;
+    content: '';
+    width: 150%;
+    height: 150%;
+    left: -25%;
+    top: -25%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, #0D0C0AAA, #0D0C0AAA, #0D0C0AAA, #0D0C0AAA, #0D0C0AAA, #00000000, #00000000, #00000000, #00000000, #00000000);
+    z-index: 130;
+}
+
+#first-description-aspect {
+    left: 0;
+}
+
+#second-description-aspect {
+    left: calc(47px + 6px);
+} 
