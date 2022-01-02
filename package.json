@@ -1,7 +1,7 @@
 {
 	"name": "thaumcraft-research-table",
 	"productName": "Thaumcraft Research Table",
-	"version": "1.0.15",
+	"version": "1.0.16",
 	"description": "Стол изучения из мода Thaumcraft 4",
 	"main": "main.js",
 	"build": {
