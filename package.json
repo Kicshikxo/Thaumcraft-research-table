@@ -34,9 +34,9 @@
 	},
 	"scripts": {
 		"start": "electron .",
-		"build:win": "electron-builder -w",
-		"build:linux": "electron-builder -l",
-		"build:mac": "electron-builder -m"
+		"build:win": "electron-builder -w --dir",
+		"build:linux": "electron-builder -l --dir",
+		"build:mac": "electron-builder -m --dir"
 	},
 	"dependencies": {
 		"@electron/remote": "^2.0.1"
