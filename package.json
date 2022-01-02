@@ -33,7 +33,9 @@
 	},
 	"dependencies": {
 		"@electron/remote": "github:electron/remote",
-		"electron": "^16.0.5",
+		"electron": "^15.3.4"
+	},
+	"devDependencies": {
 		"electron-icon-builder": "^2.0.1"
 	}
 }
